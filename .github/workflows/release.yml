@@ -29,8 +29,19 @@ jobs:
           chmod +x gradlew
           ./gradlew build --console=plain --stacktrace -x test
 
+      - name: Extract release notes from CHANGELOG.md
+        run: |
+          awk -v ver="v${GITHUB_REF_NAME}" '
+            $0 ~ ("^## " ver) { flag=1; next }
+            /^## v/ && flag { exit }
+            flag { sub(/\r$/, ""); print }
+          ' CHANGELOG.md > release_notes.md
+          if [ ! -s release_notes.md ]; then
+            echo "> ما انضاف قسم CHANGELOG لهذا الإصدار — راجع سجل التغييرات أو سجل الكوميت" > release_notes.md
+          fi
+
       - name: Publish GitHub Release with the built jar
         uses: softprops/action-gh-release@v2
         with:
           files: build/libs/*.jar
-          generate_release_notes: true
+          body_path: release_notes.md
