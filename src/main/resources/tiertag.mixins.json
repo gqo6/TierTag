@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.gqo6.tiertag.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "PlayerEntityMixin",
+    "PlayerListHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "tiertag.config.title": "TierTag",
+  "tiertag.config.enabled": "Enabled",
+  "tiertag.config.icons": "Show icons",
+  "tiertag.config.above_head": "Tags above heads",
+  "tiertag.config.tab_list": "Tags in Tab list",
+  "tiertag.config.mode": "Gamemode",
+  "tiertag.config.max_distance": "Max display distance",
+  "tiertag.config.cache_seconds": "Cache duration (s)",
+  "tiertag.config.request_interval_ms": "Request interval (ms)",
+  "tiertag.config.tier_colors": "Tier colors...",
+  "tiertag.config.profile_search": "Profile search...",
+  "tiertag.config.clear_cache": "Clear cache",
+  "tiertag.config.reset_defaults": "Reset defaults",
+  "tiertag.config.done": "Done",
+  "tiertag.colors.title": "Tier Colors (click to cycle)",
+  "tiertag.icons.title": "Icons (click to cycle)",
+  "tiertag.search.title": "MCPVP Profile Search",
+  "tiertag.search.field": "Minecraft username",
+  "tiertag.search.lookup": "Lookup"
+}

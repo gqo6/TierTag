@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "tiertag",
+  "version": "${version}",
+  "name": "TierTag",
+  "description": "Shows verified MCPVP.com PvP tiers with real gamemode item icons, merged directly into player names - above heads, in the Tab list, and in chat. Includes a GitHub update checker.",
+  "authors": ["gqo6"],
+  "contact": {
+    "homepage": "https://github.com/gqo6/TierTag",
+    "sources": "https://github.com/gqo6/TierTag"
+  },
+  "license": "MIT",
+  "icon": "assets/tiertag/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.gqo6.tiertag.TierTagMod"],
+    "modmenu": ["com.gqo6.tiertag.screen.ModMenuIntegration"]
+  },
+  "mixins": ["tiertag.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.17.3",
+    "fabric-api": "*",
+    "minecraft": "1.21.11",
+    "java": ">=21"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
