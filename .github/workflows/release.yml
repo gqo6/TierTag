@@ -31,13 +31,9 @@ jobs:
 
       - name: Extract release notes from CHANGELOG.md
         run: |
-          awk -v ver="v${GITHUB_REF_NAME}" '
-            $0 ~ ("^## " ver) { flag=1; next }
-            /^## v/ && flag { exit }
-            flag { sub(/\r$/, ""); print }
-          ' CHANGELOG.md > release_notes.md
+          python3 .github/changelog_extract.py > release_notes.md
           if [ ! -s release_notes.md ]; then
-            echo "> ما انضاف قسم CHANGELOG لهذا الإصدار — راجع سجل التغييرات أو سجل الكوميت" > release_notes.md
+            echo "> No CHANGELOG section for this release - see the commit log or CHANGELOG.md." > release_notes.md
           fi
 
       - name: Publish GitHub Release with the built jar
