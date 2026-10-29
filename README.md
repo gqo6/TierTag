@@ -5,7 +5,8 @@ A client-side Fabric mod for **Minecraft Java 1.21.11** that shows each player's
 player's name everywhere it appears: above their head, in the Tab list, and in chat.
 
 ```
-[mace icon] HT1 | PlayerName
+<img width="680" height="57" alt="image" src="https://github.com/user-attachments/assets/00707afb-7941-4a7b-b8dc-1c02c0d61eb2" />
+
 ```
 
 The rendering approach (font-glyph icons embedded in the display name) is inspired by
@@ -112,7 +113,7 @@ JDK 21 toolchain; Fabric Loom 1.19.x needs a Java 25 runtime for the Gradle daem
 gradlew build
 ```
 
-The jar lands in `build/libs/tiertag-<version>.jar`. A visual smoke test is
+The jar lands in `build/libs/tiertag-1.0.0.jar`. A visual smoke test is
 included: `gradlew runClientGameTest` boots the client, opens a world, holds Tab and
 captures a screenshot verifying the glyph + tier render.
 
