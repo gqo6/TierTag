@@ -19,6 +19,9 @@ public final class TierConfig {
     public boolean showAboveHead = true;
     public boolean showInTabList = true;
 
+    /** Rewrite fancy-Unicode / sticker-glyph names into plain readable letters. */
+    public boolean plainNames = true;
+
     public String displayMode = "HIGHEST";
 
     public String tagSeparator = "|";

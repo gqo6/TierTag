@@ -95,6 +95,12 @@ public class TierTagMod implements ClientModInitializer {
                             feedback("Icons " + (config.showIcons ? "enabled" : "disabled"));
                             return 1;
                         }))
+                        .then(ClientCommandManager.literal("plain").executes(context -> {
+                            config.plainNames = !config.plainNames;
+                            config.save();
+                            feedback("Plain readable names " + (config.plainNames ? "enabled" : "disabled"));
+                            return 1;
+                        }))
                         .then(ClientCommandManager.literal("reload").executes(context -> {
                             reloadConfig();
                             feedback("Config reloaded");

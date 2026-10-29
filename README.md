@@ -116,6 +116,10 @@ to the latest stable (26.3 included). Cross-version caveats:
   cost one display surface (e.g. Tab list) rather than crashing the game.
 - Icons render through the dedicated `tiertag:tier_icons` font, which cannot be
   shadowed by stale jars, other glyph mods, or server resource packs.
+- "Plain readable names" (`/tiertag plain`, default on) rewrites decorative
+  Unicode names (mathematical `{@literal 𝓕𝓻𝓮𝓪𝓷𝓴}` lettering), private-use-area
+  sticker characters and custom name fonts into plain letters, so the Tab list
+  shows real names instead of pack-glyph confetti. Name colors are preserved.
 
 ## Building
 

@@ -86,7 +86,9 @@ public final class TierFormatter {
         } else {
             prefix.append(Text.literal(" "));
         }
-        return prefix.append(original);
+        return prefix.append(config.plainNames
+                ? TierTextSanitizer.sanitize(original)
+                : original);
     }
 
     private static PlayerTiers debugTiers(UUID uuid, String username) {

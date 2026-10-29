@@ -4,6 +4,7 @@
   "tiertag.config.icons": "Show icons",
   "tiertag.config.above_head": "Tags above heads",
   "tiertag.config.tab_list": "Tags in Tab list",
+  "tiertag.config.plain_names": "Plain readable names",
   "tiertag.config.mode": "Gamemode",
   "tiertag.config.max_distance": "Max display distance",
   "tiertag.config.cache_seconds": "Cache duration (s)",

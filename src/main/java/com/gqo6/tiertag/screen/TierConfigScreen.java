@@ -38,6 +38,8 @@ public class TierConfigScreen extends Screen {
         y += 24;
         this.addToggle(leftX, y, columnWidth, "above_head", config.showAboveHead, value -> config.showAboveHead = value);
         this.addToggle(rightX, y, columnWidth, "tab_list", config.showInTabList, value -> config.showInTabList = value);
+        y += 24;
+        this.addToggle(leftX, y, columnWidth, "plain_names", config.plainNames, value -> config.plainNames = value);
         y += 28;
 
         List<String> modes = new ArrayList<>();
