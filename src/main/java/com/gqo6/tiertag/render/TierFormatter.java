@@ -58,8 +58,11 @@ public final class TierFormatter {
 
     private static PlayerTiers debugTiers(UUID uuid, String username) {
         String name = username == null ? "Dev" : username;
+        TierConfig config = TierTagMod.config();
+        String kit = (config != null && config.debugTestKit != null && !config.debugTestKit.isBlank())
+                ? config.debugTestKit.trim() : "mace";
         return new PlayerTiers(uuid, name,
-                Map.of("mace", Tier.HT1.name(), "sword", Tier.LT2.name()),
-                Tier.HT1.name(), "mace", System.currentTimeMillis(), true);
+                Map.of(kit, Tier.HT1.name()),
+                Tier.HT1.name(), kit, System.currentTimeMillis(), true);
     }
 }

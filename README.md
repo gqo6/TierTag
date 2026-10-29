@@ -112,7 +112,7 @@ JDK 21 toolchain; Fabric Loom 1.19.x needs a Java 25 runtime for the Gradle daem
 gradlew build
 ```
 
-The jar lands in `build/libs/tiertag-1.0.0.jar`. A visual smoke test is
+The jar lands in `build/libs/tiertag-<version>.jar`. A visual smoke test is
 included: `gradlew runClientGameTest` boots the client, opens a world, holds Tab and
 captures a screenshot verifying the glyph + tier render.
 

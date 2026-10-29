@@ -24,6 +24,7 @@ public final class TierConfig {
     public String tagSeparator = "|";
     public int maxRenderDistance = 64;
     public boolean debugTestTag = false;
+    public String debugTestKit = null;
 
     public int cacheDurationSeconds = 600;
     public int requestIntervalMs = 500;
