@@ -4,10 +4,10 @@ A client-side Fabric mod for **Minecraft Java 1.21.11** that shows each player's
 **MCPVP.com** PvP tier — with the gamemode's real item icon — merged directly into the
 player's name everywhere it appears: above their head, in the Tab list, and in chat.
 
-```
+
 <img width="680" height="57" alt="image" src="https://github.com/user-attachments/assets/00707afb-7941-4a7b-b8dc-1c02c0d61eb2" />
 
-```
+
 
 The rendering approach (font-glyph icons embedded in the display name) is inspired by
 uku3lig's open-source [TierTagger](https://github.com/uku3lig/TierTagger) — many thanks
