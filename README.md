@@ -80,13 +80,6 @@ On every launch the mod queries the GitHub Releases API for
 chat message with the latest version and a clickable **[Download]** link to the
 release page when you join a world. `/tiertag update` re-checks on demand.
 
-Publish a new release on GitHub like this:
-
-1. Push the source to `github.com/gqo6/TierTag`.
-2. Build the jar (`gradlew build`) and create a GitHub Release with a semver tag
-   such as `v1.1.0` — attach the jar from `build/libs/`.
-3. Everyone running the mod gets the chat notification on next launch.
-
 Note: Minecraft cannot hot-swap loaded mods, so the notification links to the
 release page rather than replacing the jar in-place.
 
@@ -120,19 +113,6 @@ to the latest stable (26.3 included). Cross-version caveats:
   Unicode names (mathematical `{@literal 𝓕𝓻𝓮𝓪𝓷𝓴}` lettering), private-use-area
   sticker characters and custom name fonts into plain letters, so the Tab list
   shows real names instead of pack-glyph confetti. Name colors are preserved.
-
-## Building
-
-JDK 21 toolchain; Fabric Loom 1.19.x needs a Java 25 runtime for the Gradle daemon
-(see `org.gradle.java.home` in `gradle.properties`).
-
-```
-gradlew build
-```
-
-The jar lands in `build/libs/tiertag-1.0.0.jar`. A visual smoke test is
-included: `gradlew runClientGameTest` boots the client, opens a world, holds Tab and
-captures a screenshot verifying the glyph + tier render.
 
 ## Verification status
 
