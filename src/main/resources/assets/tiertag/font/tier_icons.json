@@ -1,0 +1,18 @@
+{
+  "providers": [
+    {"type": "bitmap", "file": "tiertag:glyphs/mace.png", "ascent": 8, "height": 8, "chars": ["\uEB01"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/sword.png", "ascent": 8, "height": 8, "chars": ["\uEB02"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/crystal.png", "ascent": 8, "height": 8, "chars": ["\uEB0F"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/pot.png", "ascent": 8, "height": 8, "chars": ["\uEB04"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/netherite-sword.png", "ascent": 8, "height": 8, "chars": ["\uEB05"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/diamond-chestplate.png", "ascent": 8, "height": 8, "chars": ["\uEB06"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/netherite-chestplate.png", "ascent": 8, "height": 8, "chars": ["\uEB07"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/golden-apple.png", "ascent": 8, "height": 8, "chars": ["\uEB08"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/spear.png", "ascent": 8, "height": 8, "chars": ["\uEB09"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/shield.png", "ascent": 8, "height": 8, "chars": ["\uEB0A"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/bow.png", "ascent": 8, "height": 8, "chars": ["\uEB0B"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/early.png", "ascent": 8, "height": 8, "chars": ["\uEB0C"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/creeper.png", "ascent": 8, "height": 8, "chars": ["\uEB0D"]},
+    {"type": "bitmap", "file": "tiertag:glyphs/cart.png", "ascent": 8, "height": 8, "chars": ["\uEB0E"]}
+  ]
+}

@@ -104,6 +104,19 @@ Mod Menu → TierTag, or `config/tiertag.json`:
 | `tierColors` | MCPVP palette | per-tier `#RRGGBB` |
 | `checkUpdates` / `updateCheckRepo` | `true` / `gqo6/TierTag` | GitHub release check |
 
+## Supported versions
+
+Built and visually verified on **1.21.11**; the jar declares
+`"minecraft": ">=1.21"`, so the loader accepts it on any release from 1.21.0 up
+to the latest stable (26.3 included). Cross-version caveats:
+
+- The update-checker link degrades to a plain-text URL on 1.21.0/1.21.1 instead
+  of crashing (`ClickEvent.OpenUrl` appeared in 1.21.2).
+- Mixins use `defaultRequire: 0`, so a QoL refactor in a future release can
+  cost one display surface (e.g. Tab list) rather than crashing the game.
+- Icons render through the dedicated `tiertag:tier_icons` font, which cannot be
+  shadowed by stale jars, other glyph mods, or server resource packs.
+
 ## Building
 
 JDK 21 toolchain; Fabric Loom 1.19.x needs a Java 25 runtime for the Gradle daemon
@@ -121,12 +134,23 @@ captures a screenshot verifying the glyph + tier render.
 
 - MCPVP HTML schema + tier grammar live-verified (fixtures in `src/test/resources`,
   `gradlew test` green).
-- Font glyphs verified visually in-game (client game test screenshot shows
-  `[mace icon] HT1 | Dev` in the Tab list).
+- Font glyphs verified visually in-game (client game test screenshots for six
+  kits, rendered through the mod's own `tiertag:tier_icons` font stack).
 - Nameplate rendering uses the exact same `getDisplayName` text — verified against
   the decompiled 1.21.11 `EntityRenderer`/`PlayerEntityRenderer` sources.
 - Live multiplayer behavior (real lookups against MCPVP while playing) needs a real
   account — use `/tiertag lookup <name>` to confirm lookups work on your machine.
+
+### Troubleshooting: icon shows as a white dot
+
+The End Game/Crystal glyph lives in the mod's own font namespace
+(`tiertag:tier_icons`, codepoints `U+EB01`-`U+EB0F`). If you ever still
+see an empty dot/box:
+
+1. Make sure `mods/` contains **only** the newest `tiertag-x.y.z.jar` - old
+   `mcpvp-*`/`TierTag` jars register conflicting glyph providers.
+2. Run `/tiertag update` - the chat reply prints the version that is actually
+   running; it must match the newest release.
 
 ## Privacy / rate limiting
 

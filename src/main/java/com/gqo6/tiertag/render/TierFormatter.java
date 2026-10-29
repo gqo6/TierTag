@@ -6,15 +6,45 @@ import com.gqo6.tiertag.data.Kit;
 import com.gqo6.tiertag.data.PlayerTiers;
 import com.gqo6.tiertag.data.Tier;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.StyleSpriteSource;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 
 import java.util.Map;
 import java.util.UUID;
 
 public final class TierFormatter {
     private TierFormatter() {
+    }
+
+    /**
+     * Dedicated icon font in the mod's own namespace. Unlike the injected
+     * properties of the shared "default" font, this font cannot be shadowed by
+     * stale jars, other mods, or server resource packs - which is what caused
+     * the recurring "white dot" for the End Game/Crystal glyph.
+     */
+    private static final StyleSpriteSource ICON_FONT = buildIconFont();
+
+    private static StyleSpriteSource buildIconFont() {
+        try {
+            return new StyleSpriteSource.Font(Identifier.of("tiertag", "tier_icons"));
+        } catch (Throwable legacyLinkage) {
+            return null;
+        }
+    }
+
+    private static MutableText styledGlyph(char glyph) {
+        MutableText t = Text.literal(String.valueOf(glyph));
+        if (ICON_FONT == null) {
+            return t;
+        }
+        try {
+            return t.styled(style -> style.withFont(ICON_FONT));
+        } catch (Throwable legacyLinkage) {
+            return t;
+        }
     }
 
     public static Text appendTier(UUID uuid, String username, Text original) {
@@ -42,7 +72,10 @@ public final class TierFormatter {
         MutableText prefix;
         if (config.showIcons && selection.kitSlug() != null) {
             char glyph = Kit.glyphFor(selection.kitSlug());
-            prefix = Text.literal(String.valueOf(glyph)).append(tierText);
+            // Neutral parent: the glyph child carries the icon font while the
+            // tier text keeps the DEFAULT font (children inherit a parent's
+            // unset style fields, so styling the parent would tofu the text).
+            prefix = Text.empty().append(styledGlyph(glyph)).append(tierText);
         } else {
             prefix = tierText;
         }

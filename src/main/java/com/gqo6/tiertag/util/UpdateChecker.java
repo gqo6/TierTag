@@ -69,17 +69,17 @@ public final class UpdateChecker {
                     String current = normalize(TierTagMod.version());
                     if (latest.isEmpty() || !isNewer(latest, current)) {
                         LOGGER.info("[TierTag] up to date ({} vs {})", current, latest);
+                        if (direct && TierTagMod.client() != null && TierTagMod.client().player != null) {
+                            // Diagnostic: user can always see WHICH jar actually runs
+                            TierTagMod.client().player.sendMessage(Text.literal("[TierTag] ")
+                                    .formatted(Formatting.GOLD)
+                                    .append(Text.literal("running v" + current + " - up to date")
+                                            .formatted(Formatting.GRAY)), false);
+                        }
                         return;
                     }
                     LOGGER.info("[TierTag] update available: {} -> {}", current, latest);
-                    MutableText msg = Text.literal("[TierTag] ").formatted(Formatting.GOLD)
-                            .append(Text.literal("Update available: ").formatted(Formatting.YELLOW))
-                            .append(Text.literal(latest).styled(style -> style.withColor(TextColor.fromRgb(0x55FFFF))))
-                            .append(Text.literal(" (current: " + current + ") ").formatted(Formatting.GRAY))
-                            .append(Text.literal("[Download]")
-                                    .styled(style -> style.withColor(TextColor.fromRgb(0x55FF55))
-                                            .withUnderline(true)
-                                            .withClickEvent(new ClickEvent.OpenUrl(URI.create(htmlUrl)))));
+                    Text msg = buildUpdateMessage(latest, current, htmlUrl);
                     if (direct && TierTagMod.client() != null && TierTagMod.client().player != null) {
                         TierTagMod.client().player.sendMessage(msg, false);
                     } else {
@@ -99,6 +99,28 @@ public final class UpdateChecker {
             if (TierTagMod.client() != null && TierTagMod.client().player != null) {
                 TierTagMod.client().player.sendMessage(message.copy(), false);
             }
+        }
+    }
+
+    /**
+     * Version-aware update message. This build compiles against the sealed
+     * {@code ClickEvent.OpenUrl(URI)} record (1.21.2+). On older releases where
+     * that nested record does not exist the link construction throws a linkage
+     * error, which is caught here so 1.21.0/1.21.1 degrade to plain text
+     * instead of crashing.
+     */
+    private static Text buildUpdateMessage(String latest, String current, String htmlUrl) {
+        MutableText base = Text.literal("[TierTag] ").formatted(Formatting.GOLD)
+                .append(Text.literal("Update available: ").formatted(Formatting.YELLOW))
+                .append(Text.literal(latest).styled(style -> style.withColor(TextColor.fromRgb(0x55FFFF))))
+                .append(Text.literal(" (current: " + current + ") ").formatted(Formatting.GRAY));
+        try {
+            return base.append(Text.literal("[Download]")
+                    .styled(style -> style.withColor(TextColor.fromRgb(0x55FF55))
+                            .withUnderline(true)
+                            .withClickEvent(new ClickEvent.OpenUrl(URI.create(htmlUrl)))));
+        } catch (Throwable legacyLinkage) {
+            return base.append(Text.literal(htmlUrl).formatted(Formatting.GRAY));
         }
     }
 
