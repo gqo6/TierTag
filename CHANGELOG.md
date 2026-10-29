@@ -1,55 +1,59 @@
-# TierTag — سجل التغييرات
+# TierTag — Changelog
 
-كل تعديل اللي نشوفه بالمود ينزل هون. تدرّ القسم المخصوص للإصدار الجديد عشان تعرف وش تغيّر بالضبط وتقرر تحدث ولا لا.
+Every change shipped with each release. Read the newest section to decide whether to update the mod.
 
-- صفحة الإصدارات: https://github.com/gqo6/TierTag/releases
+- Releases page: https://github.com/gqo6/TierTag/releases
+
+## v1.2.1 — 2026-10-29
+
+### Should I update?
+Yes — if the End Game / Crystal icon renders as a plain rectangle or a white dot on your server.
+
+### Fixed
+- **End Game / Crystal icon redrawn as a proper item-style icon** (same visual language as the mace / diamond chestplate icons): an octahedron crystal with a thick dark outline, icy-cyan upper facets, ender-purple lower facets, white glint and a magenta core. Reads clearly at the real in-game glyph size (8px) — verified with an in-game screenshot.
 
 ## v1.2.0 — 2026-10-29
 
-### هل استاهل أحدّ؟
-نعم إذا تلعب على سيرفر فيه أسماء زخرفة تظهر كرموز/مربعات ملونة بدل الحروف.
+### Should I update?
+Yes — if you play on servers where some player names render as colorful pixel glyphs inside the Tab list.
 
-### جديد
-- **أسماء مقروءة (Plain readable names):** الحروف الزخرفة اليونيكود (مثل `𝓕𝓻𝓮𝓪𝓷𝓴`) ترجع حروفها العادية `Frank`، ورموز السيرفر الخاصة + علامات الشبح (zero-width) تُشال، والخط المخصص للأسماء يُبطل — وألوان الرتب من السيرفر **محفوظة**
-- أمر جديد: `/tiertag plain` — تشغيل/إيقاف
-- خيار جديد بإعدادات Mod Menu: «Plain readable names» (مفعّل افتراضياً)
-
-### تحسينات
-- فحص NFKC ممتحون بأسماء حية (𝓡𝓮𝓪𝓵 → Real) — ما يلوطم أسماء عربية/عادية أبداً
+### Added
+- **Plain readable names** (on by default): decorative Unicode names (`𝓕𝓻𝓮𝓪𝓷𝓴`-style) are rewritten to plain letters (`Frank`), private-use-area sticker characters and zero-width marks are stripped, and custom per-name fonts are cleared. Server rank colors are preserved.
+- New command: `/tiertag plain` toggles it (also "Plain readable names" in Mod Menu).
 
 ## v1.1.0 — 2026-10-29
 
-### هل استاهل أحدّ؟
-نعم — إذا عندك إصدار قديم وتشوف «نقطة بيضاء» مكان أيقونة End Game/Crystal، أو تلعب بنسخة ماينكرافت غير 1.21.11.
+### Should I update?
+Yes — especially if a stale jar (or a server resource pack) kept rendering the crystal as a white dot, or if you play on a Minecraft version other than 1.21.11.
 
-### جديد
-- دعم إصدارات موسّع: من **1.21 إلى 26.3** (ماينكرافت: `>=1.21`)
-- **خط أيقونات مستقل** (`tiertag:tier_icons`): ما يقدر تطمير عليه جرة قديمة ولا مود أيقونات ثاني ولا حزمة موارد السيرفر — من الآن أمان كامل
-- `/tiertag update` يطبع **دائماً نسخة المود المشغّلة** بالشات — للتحقق أنك فعلاً شغّل أحدث إصدار
-- فاحص التحديثات آمن على النسخ القديمة: 1.21.0/1.21.1 يشتغل برابط نصي بدل ما يكسر
-- المكسينات صارت لينة (require:0) — مستقبلًا إذا عدّل نظام التقويم بلعبة أحدث، المود يستمر شغال حتى لو ميزة التقويم سي'en
+### Added
+- **Dedicated icon font** (`tiertag:tier_icons`): all glyphs live in the mod's own namespace and can no longer be shadowed by old jars, other icon mods, or server resource packs.
+- **Wider version range**: works on Minecraft 1.21 through 26.3 (`"minecraft": ">=1.21"`).
+- `/tiertag update` now always prints the exact version that is running — instant diagnostics.
+- Update checker is crash-safe on 1.21.0/1.21.1 (the clickable link degrades to plain text instead of breaking).
+- Mixins are soft (`defaultRequire: 0`) — a future refactor can cost one display surface instead of crashing the game.
 
-### إصلاحات
-- النقطة البيضاء لرمز **End Game/Crystal**: عزّلنا الأيقونة بخط المود الخاص — السبب كان مصدر ثاني (جرة قديمة/حزمة) يتعارض مع رمزنا في الخط العام
+### Fixed
+- The End Game/Crystal white-dot root cause: glyph-provider conflicts inside the shared `default` font; icons are now isolated behind the dedicated font.
 
 ## v1.0.1 — 2026-10-29
 
-### هل استاهل أحدّ؟
-نعم إذا عندك v1.0.0 والكرستال يطلع «كتلة بيضاء».
+### Should I update?
+Yes if you run v1.0.0 and the crystal renders as a solid block.
 
-### جديد
-- **إصدار تلقائي من GitHub Actions:** أي `tag v*` يبني الجرة ويرفعها للإصدار تلقائيا
-- اختبار مرئي حتمي داخل اللعبة (6 لقطات لكل أنماط الأيقونات) للتثبت من كل رندر قبل الإصدار
+### Added
+- Automated GitHub Actions release pipeline: any `v*` tag builds the jar and attaches it to the GitHub release.
+- Deterministic in-game visual harness (6 kit screenshots) proving icon rendering before each release.
 
-### إصلاحات
-- كرستال End Game/Crystal **v3**: رسوم على شبكة منطقية 8×8 وكل بكسل منطقي يصير كتلة 4×4 مصلبة (32×32) — ما تنذوب نقطة بيضاء بأي تست فلترة
+### Fixed
+- End Game/Crystal texture: logical 8×8 grid upscaled to solid 4×4 texel blocks at 32×32 — survives any texture filtering.
 
 ## v1.0.0 — 2026-10-25
 
-### الإصدار الأول
-- تيرات MCPVP الموثوقة (HT/MT/LT) فوق الرأس + بالتقويم + بالمحادثة
-- أيقونات أنية لأنماط اللعب: Mace, Sword, Crystal, Pot, Spear, Shield, Bow, Golden Apple, Creeper, Kit Cart وغيرها
-- فاحص تحديثات GitHub مع رابط تحميل قابل للنقر بالشات
-- أوامر كاملة: `/tiertag toggle | tab | icons | reload | update | clearcache | lookup | search`
-- إعدادات كاملة من Mod Menu (ألوان التيرات، مسافة العرض، مدة الكاش…)
-- تجمّع HTML حي من MCPVP — ما يخترع تيرات غير الموثوقة
+### Initial release
+- Verified MCPVP tiers (HT/MT/LT) above heads, in the Tab list and in chat.
+- Gamemode icons: Mace, Sword, Crystal, Pot, Spear, Shield, Bow, Golden Apple, Creeper, Kit Cart and more.
+- GitHub update checker with a clickable download link in chat.
+- Full command set: `/tiertag toggle | tab | icons | reload | update | clearcache | lookup | search`.
+- Full Mod Menu settings (tier colors, render distance, cache duration...).
+- Live MCPVP HTML parsing — never invents unverified tiers.
